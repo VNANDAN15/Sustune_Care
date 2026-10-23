@@ -40,3 +40,5 @@ scratch/
 # Reference raw HTML files
 /sustune_care_landing_page.html
 /sustune_care_single_page_website.html
+
+.vercel
