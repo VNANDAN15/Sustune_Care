@@ -6,6 +6,8 @@ import { BRAND_INFO } from "@/data/content";
 
 interface EnquiryFormProps {
   preselectedService: string;
+  prefilledCity?: string;
+  prefilledNotes?: string;
 }
 
 const COUNTRY_CODES = [
@@ -32,7 +34,11 @@ const TIMEZONES = [
   "SGT (Singapore Time · UTC+8)",
 ];
 
-export const EnquiryForm: React.FC<EnquiryFormProps> = ({ preselectedService }) => {
+export const EnquiryForm: React.FC<EnquiryFormProps> = ({
+  preselectedService,
+  prefilledCity,
+  prefilledNotes,
+}) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -56,12 +62,15 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({ preselectedService }) 
     timestamp?: string;
   } | null>(null);
 
-  // Sync preselected service whenever changed from outside CTAs
+  // Sync preselected service, city, and notes whenever updated from Estimator or CTAs
   useEffect(() => {
-    if (preselectedService) {
-      setFormData((prev) => ({ ...prev, serviceInterest: preselectedService }));
-    }
-  }, [preselectedService]);
+    setFormData((prev) => ({
+      ...prev,
+      ...(preselectedService ? { serviceInterest: preselectedService } : {}),
+      ...(prefilledCity ? { targetCity: prefilledCity } : {}),
+      ...(prefilledNotes ? { notes: prefilledNotes } : {}),
+    }));
+  }, [preselectedService, prefilledCity, prefilledNotes]);
 
   const validate = () => {
     const errors: Record<string, string> = {};

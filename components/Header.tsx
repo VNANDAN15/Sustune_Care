@@ -101,55 +101,52 @@ export const Header: React.FC<HeaderProps> = ({ onSelectService }) => {
               </div>
             </a>
 
-            {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center gap-7 text-sm font-semibold text-slate-700" aria-label="Main Navigation">
+            {/* Desktop Navigation Links - Responsive gap and sizing prevents overlap */}
+            <nav className="hidden lg:flex items-center gap-3 xl:gap-5 text-xs xl:text-sm font-semibold text-slate-700" aria-label="Main Navigation">
               <a href="#home" className="hover:text-brand-cerulean transition-colors py-1">
                 Home
-              </a>
-              <a href="#solutions" className="hover:text-brand-cerulean transition-colors py-1">
-                Solutions
               </a>
               <a
                 href="#aegis"
                 onClick={() => handleNavClick("Aegis Property Stewardship")}
-                className="hover:text-brand-cerulean transition-colors flex items-center gap-1.5 py-1"
+                className="hover:text-brand-cerulean transition-colors flex items-center gap-1.5 py-1 whitespace-nowrap"
               >
-                <span className="w-2 h-2 rounded-full bg-brand-gold"></span>
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-gold"></span>
                 <span>Aegis Property</span>
               </a>
               <a
                 href="#sparsh"
                 onClick={() => handleNavClick("Sparsh Family Care")}
-                className="hover:text-brand-cerulean transition-colors flex items-center gap-1.5 py-1"
+                className="hover:text-brand-cerulean transition-colors flex items-center gap-1.5 py-1 whitespace-nowrap"
               >
-                <span className="w-2 h-2 rounded-full bg-brand-emerald"></span>
-                <span>Sparsh Family</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-emerald"></span>
+                <span>Sparsh Care</span>
               </a>
               <a
-                href="#home-care"
-                onClick={() => handleNavClick("Home Care: Domiciliary & Personal Care")}
-                className="hover:text-brand-cerulean transition-colors flex items-center gap-1.5 py-1"
+                href="#estimator"
+                onClick={() => handleNavClick()}
+                className="hover:text-brand-gold transition-colors flex items-center gap-1.5 py-1 text-brand-marine font-bold whitespace-nowrap"
               >
-                <span className="w-2 h-2 rounded-full bg-brand-cerulean"></span>
-                <span>Home Care</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse"></span>
+                <span>Care Estimator</span>
               </a>
-              <a href="#story" className="hover:text-brand-cerulean transition-colors py-1">
+              <a href="#story" className="hover:text-brand-cerulean transition-colors py-1 whitespace-nowrap">
                 Our Story
               </a>
-              <a href="#pillars" className="hover:text-brand-cerulean transition-colors py-1">
+              <a href="#pillars" className="hover:text-brand-cerulean transition-colors py-1 whitespace-nowrap">
                 Governance
               </a>
-              <a href="#faq" className="hover:text-brand-cerulean transition-colors py-1">
+              <a href="#faq" className="hover:text-brand-cerulean transition-colors py-1 whitespace-nowrap">
                 FAQ
               </a>
             </nav>
 
-            {/* Primary Action Button */}
-            <div className="hidden sm:flex items-center gap-3">
+            {/* Primary Action Button - Non-colliding with shrink-0 and whitespace-nowrap */}
+            <div className="hidden sm:flex items-center shrink-0">
               <a
                 href="#contact"
                 onClick={() => handleNavClick("General Consultation")}
-                className="px-5 py-2.5 rounded-btn bg-brand-cerulean hover:bg-brand-marine text-white font-bold text-xs shadow-sm hover:shadow-md transition-all duration-200 flex items-center gap-2 group"
+                className="shrink-0 whitespace-nowrap px-3.5 xl:px-5 py-2 xl:py-2.5 rounded-btn bg-brand-cerulean hover:bg-brand-marine text-white font-bold text-xs shadow-sm hover:shadow-md transition-all duration-200 flex items-center gap-1.5 xl:gap-2 group"
               >
                 <span>Book NRI Consultation</span>
                 <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -202,6 +199,14 @@ export const Header: React.FC<HeaderProps> = ({ onSelectService }) => {
               >
                 <Heart className="w-4 h-4 text-brand-emerald" />
                 <span>Sparsh Family &amp; Elder Care</span>
+              </a>
+              <a
+                href="#estimator"
+                onClick={() => handleNavClick()}
+                className="px-3 py-2 rounded-md hover:bg-amber-50 text-brand-marine font-bold flex items-center gap-2"
+              >
+                <span className="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
+                <span>Transparent Care Estimator</span>
               </a>
               <a
                 href="#home-care"

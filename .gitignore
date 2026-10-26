@@ -30,12 +30,13 @@ scratch/
 # TypeScript build info
 *.tsbuildinfo
 
-# Heavy media & raw archives (ignored for fast GitHub & Vercel deployment)
-*.mp4
-*.pdf
+# Heavy media & raw archives
 /Sustune_videos/
 /Sustune_Care_Phase1_Digital_and_PrePress_Assets-20261023T043525Z-1-001/
-/public/videos/*.mp4
+*.pdf
+
+# Allow optimized public video assets
+!/public/videos/*.mp4
 
 # Reference raw HTML files
 /sustune_care_landing_page.html

@@ -7,7 +7,7 @@ import { ServiceDiscovery } from "@/components/ServiceDiscovery";
 import { AegisSection } from "@/components/AegisSection";
 import { SparshSection } from "@/components/SparshSection";
 import { HomeCareSection } from "@/components/HomeCareSection";
-import { CareSelectorSection } from "@/components/CareSelectorSection";
+import { DiasporaEstimatorSection } from "@/components/DiasporaEstimatorSection";
 import { BrandStorySection } from "@/components/BrandStorySection";
 import { PillarsSection } from "@/components/PillarsSection";
 import { LeadershipSection } from "@/components/LeadershipSection";
@@ -20,10 +20,26 @@ import { VideoConfig } from "@/data/videos";
 
 export default function Home() {
   const [selectedService, setSelectedService] = useState<string>("Aegis Property Stewardship");
+  const [prefilledCity, setPrefilledCity] = useState<string>("Hyderabad");
+  const [prefilledNotes, setPrefilledNotes] = useState<string>("");
   const [activeModalVideo, setActiveModalVideo] = useState<VideoConfig | null>(null);
 
   const handleSelectService = (service: string) => {
     setSelectedService(service);
+  };
+
+  const handleSelectPlan = (details: {
+    serviceName: string;
+    hub: string;
+    scope: string;
+    rent: number;
+    sparshTier: string;
+    monthlyFee: string;
+    summaryText: string;
+  }) => {
+    setSelectedService(details.serviceName);
+    setPrefilledCity(details.hub);
+    setPrefilledNotes(details.summaryText);
   };
 
   const handleOpenVideoModal = (video: VideoConfig) => {
@@ -66,8 +82,8 @@ export default function Home() {
         {/* 5. Home and Personal Care Clinical Pathways */}
         <HomeCareSection onSelectService={handleSelectService} />
 
-        {/* 6. Self-Assessment Tool: Calculate Recommended Care Level (#care-selector) */}
-        <CareSelectorSection onSelectService={handleSelectService} />
+        {/* 6. Interactive TCO & ROI Simulator / Diaspora Care Estimator (#estimator) */}
+        <DiasporaEstimatorSection onSelectPlan={handleSelectPlan} />
 
         {/* 7. About Sustune Care / Our Story Section (with Introduction Video) */}
         <BrandStorySection onOpenVideoModal={handleOpenVideoModal} />
@@ -85,7 +101,11 @@ export default function Home() {
         <FaqSection />
 
         {/* 12. Consultation & Enquiry Form (NRI-Aware with Real Endpoint) */}
-        <EnquiryForm preselectedService={selectedService} />
+        <EnquiryForm
+          preselectedService={selectedService}
+          prefilledCity={prefilledCity}
+          prefilledNotes={prefilledNotes}
+        />
 
       </main>
 
