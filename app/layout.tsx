@@ -1,12 +1,16 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { BRAND_INFO } from "@/data/content";
+import { SharedHeader } from "@/components/shared/SharedHeader";
+import { SharedFooter } from "@/components/shared/SharedFooter";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.sustunecare.com"),
-  title: "Sustune Care | Institutional Asset Stewardship & Family Care for Global Indians",
+  title: {
+    default: "Sustune Care | Protected Care · Sustained Dignity",
+    template: "%s | Sustune Care",
+  },
   description:
-    "Sustune Care provides an institutional shield for non-resident Indians. Protect your multi-generational real estate assets and secure empathetic, proxy family healthcare in Hyderabad & Bengaluru with 100% SLA compliance.",
+    "Sustune Care provides institutional asset stewardship and compassionate family healthcare for global Indians in Hyderabad & Bengaluru.",
   keywords: [
     "Sustune Care",
     "NRI Property Management",
@@ -16,7 +20,6 @@ export const metadata: Metadata = {
     "Hyderabad NRI Services",
     "Bengaluru Property Management",
     "Elder Care Companions India",
-    "FEMA Rental Remittance",
   ],
   authors: [{ name: "Sustune Care Private Limited" }],
   creator: "Sustune Care Private Limited",
@@ -36,7 +39,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Sustune Care | Protected Care · Sustained Dignity",
     description:
-      "Bridging the anxiety of distance for Global Indians. Institutional property stewardship and proxy family healthcare in Hyderabad & Bengaluru.",
+      "Institutional asset stewardship and compassionate family healthcare for global Indians in Hyderabad & Bengaluru.",
     url: "https://www.sustunecare.com",
     siteName: "Sustune Care",
     images: [
@@ -44,7 +47,7 @@ export const metadata: Metadata = {
         url: "/videos/posters/sustune-care-launch-poster.jpg",
         width: 720,
         height: 1280,
-        alt: "Sustune Care Assurance — Protected Care. Sustained Dignity.",
+        alt: "Sustune Care — Protected Care. Sustained Dignity.",
       },
     ],
     locale: "en_US",
@@ -52,9 +55,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sustune Care | Institutional Asset Stewardship & Family Care",
+    title: "Sustune Care | Protected Care · Sustained Dignity",
     description:
-      "Bridging the anxiety of distance for Global Indians. Institutional property stewardship and proxy family healthcare in India.",
+      "Institutional asset stewardship and compassionate family healthcare for global Indians.",
     images: ["/videos/posters/sustune-care-launch-poster.jpg"],
   },
   robots: {
@@ -75,7 +78,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -84,11 +87,18 @@ export default function RootLayout({
         {/* Accessible Skip-To-Content Link */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand-gold focus:text-brand-marine focus:font-bold focus:rounded-md focus:shadow-lg focus:outline-none"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:bg-brand-gold focus:text-brand-marine focus:font-bold focus:rounded-md focus:shadow-lg focus:outline-none"
         >
           Skip to main content
         </a>
-        {children}
+
+        <SharedHeader />
+
+        <main id="main-content" tabIndex={-1} className="flex-1 focus:outline-none">
+          {children}
+        </main>
+
+        <SharedFooter />
       </body>
     </html>
   );
